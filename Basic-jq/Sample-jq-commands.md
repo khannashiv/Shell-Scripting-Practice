@@ -1,40 +1,103 @@
-## Sample jq commands tested on sample.json
+## Sample jq Commands (Tested on sample.json)
 
+Below are useful jq commands to process and extract information from AWS-style JSON files like sample.json.
 
-  - jq '.Reservations[].Instances' sample.json
-  - jq '.Reservations[].Instances[].Architecture' sample.json
-  - jq '.Reservations[].Instances[].BlockDeviceMappings[]' sample.json
-  - jq '.Reservations[].Instances[].BlockDeviceMappings[].Ebs' sample.json
-  - jq '.Reservations[].Instances[].NetworkInterfaces[].Association' sample.json
-  - jq '.Reservations[].Instances[].NetworkInterfaces[].Association.PublicIp' sample.json
-  - jq '.Reservations[].Instances[].VpcId' sample.json
-  - jq '.User.UserId' sample.json
-  - jq '.LoadBalancerDescriptions' sample.json
-  - jq '.Reservations[].Instances[] | {InstanceId,InstanceType}' sample.json
-  - jq '.Reservations[].Instances[].Placement.AvailabilityZone' sample.json
-  - jq '.Reservations[].Instances[] | {AZ: .Placement.AvailabilityZone}' sample.json
-  - jq '.Reservations[].Instances[] | select(.State.Name=="running") | .InstanceId' sample.json
-  - jq '.Reservations[].Instances[] | select(.State.Name=="running") | .InstanceId, .InstanceType' sample.json
-  - jq '.Reservations[].Instances[] | select(.State.Name=="running") | { InstanceId, InstanceType }' sample.json
-  - jq '.Reservations[].Instances[] | select(.State.Name == "running") | { InstanceId, State: .State.Name }' sample.json
-  - jq '.Reservations[0:2]' sample.json
-  - jq '.Reservations[0]' sample.json
+---
 
-<!-- 
-    #### Basic points on jq #####
+### Instances & Reservations
 
-  - jq '<filter>' <file>
-    - <filter>: The operation you want to perform on the JSON data.
-    - <file>: The JSON file you're working with (it could also be a stream of data).
+```bash
+# List all Instances arrays
+jq '.Reservations[].Instances' sample.json
 
-  - The dot refers to the current object. Initially, it points to the root of the JSON data (the entire object).
+# List Architectures of all instances
+jq '.Reservations[].Instances[].Architecture' sample.json
 
-  - In the above example, Instances + Architecture + Ebs + Association + PublicIp + VpcId + UserId . All of them are keys .
+# Show BlockDeviceMappings for each instance
+jq '.Reservations[].Instances[].BlockDeviceMappings[]' sample.json
 
-  - The select function in jq is used to filter or select elements from a stream of data based on a condition. It helps to pick out specific items from the input JSON that match a condition you define. When you use select, it checks each element against the given condition and keeps those that pass the filter.
+# Show EBS details for each BlockDeviceMapping
+jq '.Reservations[].Instances[].BlockDeviceMappings[].Ebs' sample.json
 
-  - jq '.Reservations[0:2]' sample.json : It will return the first two elements (indexes 0 and 1) from the Reservations array in the sample.json file.
-  
- -->
+# Get VPC IDs for each instance
+jq '.Reservations[].Instances[].VpcId' sample.json
+
+# Get all LoadBalancerDescriptions
+jq '.LoadBalancerDescriptions' sample.json
+
+# Get Placement Availability Zones for each instance
+jq '.Reservations[].Instances[].Placement.AvailabilityZone' sample.json
+
+# List Instances with their InstanceId and InstanceType
+jq '.Reservations[].Instances[] | {InstanceId, InstanceType}' sample.json
+
+# List Availability Zones with alias
+jq '.Reservations[].Instances[] | {AZ: .Placement.AvailabilityZone}' sample.json
+```
+
+---
+
+### Filtering & Selecting Instances
+
+```bash
+# Show running instance IDs
+jq '.Reservations[].Instances[] | select(.State.Name=="running") | .InstanceId' sample.json
+
+# Show InstanceId and InstanceType for running instances
+jq '.Reservations[].Instances[] | select(.State.Name=="running") | .InstanceId, .InstanceType' sample.json
+
+# Show object with InstanceId and InstanceType for running instances
+jq '.Reservations[].Instances[] | select(.State.Name=="running") | { InstanceId, InstanceType }' sample.json
+
+# Show object with InstanceId and State for running instances
+jq '.Reservations[].Instances[] | select(.State.Name == "running") | { InstanceId, State: .State.Name }' sample.json
+```
+
+---
+
+### Network Details
+
+```bash
+# Show Network Interface Associations
+jq '.Reservations[].Instances[].NetworkInterfaces[].Association' sample.json
+
+# Show public IPs associated with network interfaces
+jq '.Reservations[].Instances[].NetworkInterfaces[].Association.PublicIp' sample.json
+```
+
+---
+
+### User Details
+
+```bash
+# Show UserId
+jq '.User.UserId' sample.json
+```
+
+---
+
+### Array Slicing
+
+```bash
+# Get the first two Reservations
+jq '.Reservations[0:2]' sample.json
+
+# Get the first Reservation
+jq '.Reservations[0]' sample.json
+```
+
+---
+
+## Notes on jq
+
+- Format: jq '<filter>' <file>
+    - <filter>: Operation to perform on the JSON data.
+    - <file>: The JSON file (or stream) to be processed.
+- The dot (.) refers to the current object (initially the root of the JSON).
+- Keys in the above examples include Instances, Architecture, Ebs, Association, PublicIp, VpcId, UserId, etc.
+- select(...) is used to filter elements by a condition.
+- Example:  
+    jq '.Reservations[0:2]' sample.json  
+    Returns the first two elements of the Reservations array.
 
 
