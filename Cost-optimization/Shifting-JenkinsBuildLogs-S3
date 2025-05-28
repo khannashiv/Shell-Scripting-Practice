@@ -3,12 +3,15 @@
 
 # Script to upload / shift Jenkins logs from ELK to S3 Bucket for doing cost optimization. 
 
-# We can add line # 8 (that indicates log upload process) before uploading the logs to S3 bucket i.e. at line # 41.
+# We can add line # 8 (that indicates log upload process) before uploading the logs to S3 bucket i.e. at line # 44.
 # For simplicity we have skipped it for now .
 # echo "$(date +%Y-%m-%d_%H:%M:%S) - Uploading $build_logs to $s3_path"
 # We have implemented cron-job to this shell script as well.
 
 ##########################
+
+# Enabling debug mode.
+set -x
 
 # Declaring variables
 Jenkins_HOME="/var/lib/jenkins"
@@ -101,5 +104,5 @@ done
 # - for example : 0 3 * * * AWS_ACCESS_KEY_ID="XXXXX" AWS_SECRET_ACCESS_KEY="XXXXX" /home/ubuntu/scripts/two.sh >> /home/ubuntu/logs/cronjob.log 2>&1
 # - 2>&1 means "redirect stderr (2) to the same location as stdout (1)".
 
-# aws configure list-profiles --- > If we want to get list aws profiles programmatically.
-# cat ~/.aws/credentials      --- > The other way to get list of aws profiles.
+# aws configure list-profiles ---> If we want to get list aws profiles programmatically.
+# cat ~/.aws/credentials      ---> The other way to get list of aws profiles.
