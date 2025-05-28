@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Declaring variables
+Jenkins_HOME="/var/lib/jenkins"
+S3_URL="s3://jenkins-jobs-build-logs"
+Timestamp=$(date +%Y-%m-%d_%H-%M-%S)  # Added time to make it unique
+
+# Check if AWS CLI is installed
+if ! aws --version >> /dev/null; then
+    echo "AWS-CLI not found on the machine. Please install it as a prerequisite."
+    exit 1
+fi
+
+# Iterate over each job
+for jobs in "$Jenkins_HOME/jobs/"*/; do
+    job_name=$(basename "$jobs")
+
+    # Iterate over each build in the job's builds folder
+    for builds in "${jobs}builds/"*/; do
+        build_number=$(basename "$builds")
+        build_logs="${builds}log"
+
+        # Check if log file exists before attempting to upload
+        if [ ! -f "$build_logs" ]; then
+            echo "Log file not found for build #$build_number in job $job_name. Skipping..."
+            continue
+        fi
+
+        # Construct the S3 path with job name, build number, and timestamp
+        s3_path="${S3_URL}/${job_name}/build_${build_number}_log_${Timestamp}.log"
+
+        # Log the upload process
+        #echo "$(date +%Y-%m-%d_%H:%M:%S) - Uploading $build_logs to $s3_path"
+
+        # Upload the log to S3
+        aws s3 cp "$build_logs" "$s3_path"
+
+        # Check the upload success
+        if [ $? -eq 0 ]; then
+            echo "Files uploaded successfully: $build_logs to $s3_path"
+        else
+            echo "Error uploading $build_logs to S3. Exiting."
+            exit 1
+        fi
+    done
+done
