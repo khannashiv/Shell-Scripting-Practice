@@ -306,21 +306,20 @@
                     "PrivateIpAddress": "172.31.84.255",
                     "PublicIpAddress": "18.208.115.218"
                 }
-            ],
-    
-        "User": {
-            "UserId": "140023370732",
-            "Arn": "arn:aws:iam::140023370732:root",
-            "CreateDate": "2025-01-15T08:27:53+00:00",
-            "PasswordLastUsed": "2025-05-28T04:04:30+00:00"
-            },
-        
-        "LoadBalancerDescriptions": [],
-
-        "clusters": []
-
+            ]
         }
-    ]
+    ],
+
+    "User": {
+    "UserId": "140023370732",
+    "Arn": "arn:aws:iam::140023370732:root",
+    "CreateDate": "2025-01-15T08:27:53+00:00",
+    "PasswordLastUsed": "2025-05-28T04:04:30+00:00"
+    },
+    
+    "LoadBalancerDescriptions": [],
+
+    "clusters": []
 }
 
 
