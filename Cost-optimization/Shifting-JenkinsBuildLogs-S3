@@ -1,4 +1,13 @@
 #!/bin/bash
+########################
+
+# Script to upload / shift Jenkins logs from ELK to S3 Bucket for doing cost optimization. 
+
+# We can add line # 8 (that indicates log upload process) before uploading the logs to S3 bucket i.e. at line # 40 but 
+# for simplicity we have skipped it for now .
+# echo "$(date +%Y-%m-%d_%H:%M:%S) - Uploading $build_logs to $s3_path"
+
+##########################
 
 # Declaring variables
 Jenkins_HOME="/var/lib/jenkins"
@@ -28,9 +37,6 @@ for jobs in "$Jenkins_HOME/jobs/"*/; do
 
         # Construct the S3 path with job name, build number, and timestamp
         s3_path="${S3_URL}/${job_name}/build_${build_number}_log_${Timestamp}.log"
-
-        # Log the upload process
-        #echo "$(date +%Y-%m-%d_%H:%M:%S) - Uploading $build_logs to $s3_path"
 
         # Upload the log to S3
         aws s3 cp "$build_logs" "$s3_path"
