@@ -52,3 +52,7 @@ To reduce unnecessary ELK storage costs, an alternative logging strategy for Jen
 
 - **Cost Savings:** Significant reduction in ELK storage and operational costs.
 - **No Loss of Functionality:** Developers still receive failure
+
+<!-- 
+
+ -->
