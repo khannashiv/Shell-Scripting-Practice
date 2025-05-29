@@ -13,7 +13,7 @@ mkdir -p "$output_dir"
 # Function to list AWS S3 buckets
 list_s3_buckets() {
     echo "Listing all S3 buckets in AWS account..."
-    if ! aws s3 ls --output json > "$output_dir/s3_buckets_$timestamp.json"; then
+    if ! aws s3api list-buckets --output json > "$output_dir/s3_buckets_$timestamp.json"; then
         echo "Failed to list S3 buckets."
         exit 1
     fi
