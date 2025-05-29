@@ -30,3 +30,5 @@
   - ![jq-6](./images/jq-6.png)
   - ![jq-7](./images/jq-7.png)
   ---
+
+** **Outcomes of Cost-optimization script present**

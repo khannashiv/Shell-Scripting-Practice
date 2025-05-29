@@ -3,7 +3,7 @@
 
 # Script to upload / shift Jenkins logs from ELK to S3 Bucket for doing cost optimization. 
 
-# We can add line # 8 (that indicates log upload process) before uploading the logs to S3 bucket i.e. at line # 44.
+# We can add line # 8 (that indicates log upload process) before uploading the logs to S3 bucket i.e. at line # 47.
 # For simplicity we have skipped it for now .
 # echo "$(date +%Y-%m-%d_%H:%M:%S) - Uploading $build_logs to $s3_path"
 # We have implemented cron-job to this shell script as well.
@@ -12,6 +12,9 @@
 
 # Enabling debug mode.
 set -x
+
+# This command is used in Bash to make your script exit immediately if any command returns a non-zero (error) status.
+set -e
 
 # Declaring variables
 Jenkins_HOME="/var/lib/jenkins"
