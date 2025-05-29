@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# For debugging
-# set -x
-
 # Declaring both static and dynamic variables.
 aws_region=$1
 aws_service=$2
