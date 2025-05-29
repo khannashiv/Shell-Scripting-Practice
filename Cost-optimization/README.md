@@ -59,13 +59,13 @@ S:
     -- The basename command extracts the final component of a given path, regardless of whether that component is a file or a folder.
     -- If jobs="/var/lib/jenkins/jobs/Build-App/", then: job_name=$(basename "$jobs"), O/P is : job_name = "Build-App"
  
- Q: Meaning of : for builds in "${jobs}builds/"*/;
- S: 
-  - jobs is a variable that likely holds a directory path ending with a slash, e.g., /some/path/job1/
-  - "${jobs}builds/" concatenates the string builds/ to the path stored in jobs, so it points to the builds subdirectory inside that job directory.
-  - The */ outside the quotes is a wildcard pattern matching all directories inside the builds/ directory
-  - The for builds in ...; do loop iterates over each directory inside that builds folder.
-  - "${Jenkins_HOME}/jobs/" or "${jobs}builds/"  -- > Why double qoutes ? --- > This is done to safely expand  the variable even if it contains spaces or special characters.So this prevents the shell from misinterpreting the path.
+Q: Meaning of : for builds in "${jobs}builds/"*/;
+S: 
+- jobs is a variable that likely holds a directory path ending with a slash, e.g., /some/path/job1/
+- "${jobs}builds/" concatenates the string builds/ to the path stored in jobs, so it points to the builds subdirectory inside that job directory.
+- The */ outside the quotes is a wildcard pattern matching all directories inside the builds/ directory
+- The for builds in ...; do loop iterates over each directory inside that builds folder.
+- "${Jenkins_HOME}/jobs/" or "${jobs}builds/"  -- > Why double qoutes ? --- > This is done to safely expand  the variable even if it contains spaces or special characters.So this prevents the shell from misinterpreting the path.
 
 Q: Meaning of s3_path="${S3_URL}/${job_name}/build_${build_number}_log_${Timestamp}.log" ?
 S: Above is used in building a full S3 object path (like a filename in a bucket), using variable substitution in Bash.
