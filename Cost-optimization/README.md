@@ -67,8 +67,8 @@ S:
   - The for builds in ...; do loop iterates over each directory inside that builds folder.
   - "${Jenkins_HOME}/jobs/" or "${jobs}builds/"  -- > Why double qoutes ? --- > This is done to safely expand  the variable even if it contains spaces or special characters.So this prevents the shell from misinterpreting the path.
 
-  Q: Meaning of s3_path="${S3_URL}/${job_name}/build_${build_number}_log_${Timestamp}.log" ?
-  S: Above is used in building a full S3 object path (like a filename in a bucket), using variable substitution in Bash.
+Q: Meaning of s3_path="${S3_URL}/${job_name}/build_${build_number}_log_${Timestamp}.log" ?
+S: Above is used in building a full S3 object path (like a filename in a bucket), using variable substitution in Bash.
 
     | Variable       | Meaning                                                      |
     | -------------- | ------------------------------------------------------------ |
