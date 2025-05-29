@@ -46,7 +46,7 @@ case $aws_service in
         ;;
     EKS)
         echo "Listing Elastic Kubernetes cluster in $aws_region"
-        aws aws eks list-clusters --region $aws_region
+        aws eks list-clusters --region $aws_region
         ;;
     *)
         echo "Please enter the valid input."
