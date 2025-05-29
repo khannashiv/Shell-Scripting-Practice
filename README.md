@@ -19,3 +19,14 @@
     
     - ![Shell-script-6](./images/Shell-script-6.png)
     ---
+
+**Outcomes of jq queries using sample json and some basic commands**
+  ---
+    - ![jq-1](./images/jq-1.png)
+    - ![jq-2](./images/jq-2.png)
+    - ![jq-3](./images/jq-3.png)
+    - ![jq-4](./images/jq-4.png)
+    - ![jq-5](./images/jq-5.png)
+    - ![jq-6](./images/jq-6.png)
+    - ![jq-7](./images/jq-7.png)
+  ---
