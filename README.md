@@ -31,4 +31,17 @@
   - ![jq-7](./images/jq-7.png)
   ---
 
-** **Outcomes of Cost-optimization script present**
+** **Outcomes of Cost-optimization script**
+
+  --- 
+  - ![Shell-script-7](./images/Shell-script-7.png)
+  - ![Shell-script-8](./images/Shell-script-8.png)
+  - ![Shell-script-9](./images/Shell-script-9.png)
+  - ![Shell-script-10](./images/Shell-script-10.png)
+  - ![Shell-script-11](./images/Shell-script-11.png)
+  - ![Shell-script-12](./images/Shell-script-12.png)
+  - ![Shell-script-13](./images/Shell-script-13.png)
+  - ![Shell-script-14](./images/Shell-script-14.png)
+  - ![Shell-script-15](./images/Shell-script-15.png)
+  - ![Shell-script-16](./images/Shell-script-16.png)
+    ---
