@@ -42,6 +42,33 @@
 
      export GITHUB_TOKEN="XXXXXXXXXXXXXXXX"
      export GIT_USERNAME="XXXXXXXXXXXXX"
+
+     Q: Meaning of : if [ -z "$GIT_USERNAME" ] || [ -z "$GIT_TOKEN" ]; then ?
+     S: This checks if either the environment variable GIT_USERNAME or the environment variable GIT_TOKEN is empty or unset.
+
+        - [ -z "$GIT_USERNAME" ]   : The -z tests if the string is zero length (empty).
+        - || : Logical OR operator : The condition passes if either side is true.
+        - [ -z "$GIT_TOKEN" ]      : Same test for GIT_TOKEN.
+        - If either variable is empty or missing, then the code inside the then block runs:
+
+            - echo "Error: GitHub username or token is not set in the environment variables."
+            - Prints an error message to the terminal.
+            - exit 1
+            - Exits the script immediately with a status code of 1, which generally signals an error.
+        -
+
+     Q: Instead of using echo "$RESPONSE", Can I also write cat "$RESPONSE" ?
+     S: No, you cannot replace echo "$RESPONSE" with cat "$RESPONSE" .
+        - RESPONSE is a variable holding the API response as a string, not a filename.
+        - echo "$RESPONSE" prints the contents of the variable.
+        - cat "$RESPONSE" tries to open a file named after the content of $RESPONSE, which almost certainly does not exist, and will cause an error.
+        - If you want to use cat, you'd need to first save the response into a file, 
+            - e.g. : echo "$RESPONSE" > response.txt
+            - cat response.txt | grep -q "rate limit exceeded"
+                - grep -q "rate limit exceeded" searches quietly for the string "rate limit exceeded" in the response.
+        - "$@" : expands to all the arguments individually quoted, preserving spaces and special characters.
+                - "$@" preserves the boundaries between arguments, even if some have spaces.
+                - NOTE : Using $@ without quotes would join all arguments into a single string, which could cause problems.
     -->
 
     

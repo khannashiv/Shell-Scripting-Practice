@@ -46,7 +46,7 @@ function get_total_commits() {
         fi
 
         # Count commits on the current page
-        PER_PAGE_COMMITS=$(echo "$RESPONSE" | jq '.[] | .commit.author.name' | wc -l)
+        PER_PAGE_COMMITS=$(echo "$RESPONSE" | jq '.[].commit.author.name' | wc -l)
 
         # If no commits are returned, exit the loop
         if [ "$PER_PAGE_COMMITS" -eq 0 ]; then
