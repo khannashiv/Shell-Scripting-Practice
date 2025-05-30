@@ -31,7 +31,7 @@
   - ![jq-7](./images/jq-7.png)
   ---
 
-** **Outcomes of Cost-optimization script present**
+** **Outcomes of Cost-optimization script**
 
   --- 
   - ![Shell-script-7](./images/Shell-script-7.png)
