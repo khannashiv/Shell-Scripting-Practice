@@ -5,7 +5,6 @@
     - https://docs.github.com/en/rest/commits/commits?apiVersion=2022-11-28
     - https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api?apiVersion=2022-11-28
     - https://docs.aws.amazon.com/cli/latest/reference/
-    - 
     - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 <!-- 
