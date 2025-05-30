@@ -40,4 +40,8 @@
     ## In the below command, we are silently taking an output of curl and saving the output in comit.json file & eventually calculating the count of commits made by owner of repo.
     curl -s https://api.github.com/repos/khannashiv/Kubernetes-Practice/commits -o commit.json && jq '.[] | .commit.author.name' commit.json | wc -l
 
+     export GITHUB_TOKEN="XXXXXXXXXXXXXXXX"
+     export GIT_USERNAME="XXXXXXXXXXXXX"
     -->
+
+    
