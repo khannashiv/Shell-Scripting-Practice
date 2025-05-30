@@ -1,4 +1,4 @@
-## Calculating total number of commmits made to git repository.
+## Calculating total number of commits made to git repository.
 
 - Refrence
     - https://docs.github.com/en/rest/quickstart?apiVersion=2022-11-28
