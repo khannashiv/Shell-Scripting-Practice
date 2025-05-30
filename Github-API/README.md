@@ -66,7 +66,7 @@
             - e.g. : echo "$RESPONSE" > response.txt
             - cat response.txt | grep -q "rate limit exceeded"
                 - grep -q "rate limit exceeded" searches quietly for the string "rate limit exceeded" in the response.
-        - "$@" : expands to all the arguments individually quoted, preserving spaces and special characters.
+        - "$@"  - expands to all the arguments individually quoted, preserving spaces and special characters.
                 - "$@" preserves the boundaries between arguments, even if some have spaces.
                 - NOTE : Using $@ without quotes would join all arguments into a single string, which could cause problems.
     -->
